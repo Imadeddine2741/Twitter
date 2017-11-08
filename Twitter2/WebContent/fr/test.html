@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+
+		<title> Cookie</title>
+	</head>
+		
+	<body >
+	<p id="cook1"></p>
+	<p id="cook"></p>
+	<script type="text/javascript">
+
+		document.cookie = 'prenom1=toto; expires=Mon ; 11 Mar 2017 17:00:00 UTC; path=/';
+		document.cookie = 'prenom2=titi; expires=Thu, 18 Dec 2013 12:00:00 UTC" path=/';
+		var c = document.cookie ;
+		document.getElementById("cook1").innerHTML = c;
+	
+		function creerCookie(nom,valeur,jour){
+			//di les jours ont bien été définis
+			if(jour){
+				//On crée un objet date stockant la date actuelle
+				var date = new Date();
+				//on définit la date d'expiration du cookie
+				date.setTime(date.getTime()+(jour*24*60*60*1000));
+				//On met la date au bon format pour cookie
+				var exp = '; expires='+date.toGMTString();
+			}
+			//Si les jours n'ont pas été définis, pas besoin de calcul
+			else{
+				var exp = '';
+			}
+			document.cookie = nom+'='+valeur+exp+';path=/';
+		}
+
+		function lireCookie(nom){
+			//On recupère le nom du cookie et le signe '='
+			var nomEtEgal = nom + '=';
+			//récupère tous les cookies dans un tableau 
+			var cTableau = document.cookie.split(';');
+			//parcourt le tabeau créé
+			for(var i=0;i<cTableau.length;i++){
+				//On récupère tous les noms et valeur des cookies
+				var c = cTableau[i];
+				//On supprime les espaces potentielles dans c jusqu'à tomber sur le nom d'un cookie
+				while(c.charAt(0) == ' '){
+					c = c.substring(1,c.length);
+				}
+				if(c.indexOf(nomEtEgal)==0){
+					return c.substring(nomEtEgal.length,c.length);
+				}	
+			}
+			//Si nom du cookie non trouvé, il n'existe pas 
+			return null;
+		}
+
+		function supprimerCookie(nom){
+			//On donne le nom du cookie à supprimer, on utilise creerCookie() pour indiquer une date d'expiration passée
+			creerCookie(nom,'',-1);
+		}
+
+		creerCookie("cookie1", "je suis la", 7);
+		creerCookie("cookie2", "salut", 7);
+
+		var affiche = document.getElementById("cook");
+
+		affiche.innerHTML = 'Valeur : '+lireCookie('cookie1');
+	</script>
+	</body>
+</html>

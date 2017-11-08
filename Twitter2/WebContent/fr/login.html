@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Connexion</title>
+	<link href="css/connexion.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	<script src="js/login.js"></script>
+	<script src="js/mainIndex.js"></script>
+</head>
+<body>
+   <div id="connexion">
+		<fieldset class="connexion">
+          <legend>Connectez-vous</legend>
+            <div id="login1">Login obligatoire</div>
+        	<div id="pwd">Mot de passe obligatoire</div>
+        	<div id="deja_connecter">Vous êtes dêja connecter</div>
+        	<div id="erreur_login">login n'est pas correcte</div>
+        	<div id="erreur_mdp">mode de passe n'est pas correcte</div>
+        	<div id="serveur_erreur">Oups une erreur inattendue s'est produite ,Verifiez votre connection et reessayer</div>
+			<form name="login" action="javascript:connexion(this);" method="post">
+				 <div class="ids"><span>Login : </span><input type="text" name="login1" placeholder="Identifiant" /></div>
+				 <div class="ids"><span>Mot de passe :</span><input type="password" name="pwd" placeholder="Mot de passe" /></div>
+				 <div class="btn"><input type="submit" name="btn btn-primary" value="Se connecter	"/></div>
+				 <!--<div class="links">
+					 <div id="link1"><a href="">mot de passe perdu</a></div>
+					 <div id="link2"><a href="">pas encore inscrit ?</a></div>
+				</div>!-->
+			</form>
+		</fieldset>
+	</div>
+</body>
+</html>
